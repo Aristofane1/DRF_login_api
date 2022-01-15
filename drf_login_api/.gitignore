@@ -1,0 +1,4 @@
+db.sqlite3
+drf_api_login/__pycache__/
+login_api/__pycache__/ 
+
