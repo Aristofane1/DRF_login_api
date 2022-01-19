@@ -13,7 +13,7 @@ class User(AbstractUser):
         (AFFILIATION, 'affiliation'),
         (PRESTATAIRE, 'prestataire')
     ] 
-    username = models.CharField(max_length=255)
+    username = models.CharField(max_length=255, unique=True)
     email = models.CharField(max_length=200, unique=True)
     password = models.CharField(max_length=200)
     status = models.CharField(
