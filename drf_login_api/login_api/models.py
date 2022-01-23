@@ -1,21 +1,21 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 # Create your models here.
-class User(AbstractUser):
+class Profile(models.Model):
     
-    DROPSHIPPER = 'dropshipper'
+    DROPSHIPPEUR = 'dropshippeur'
     INFLUENCEUR = 'influenceur'
     AFFILIATION = 'affiliation'
     PRESTATAIRE = 'prestataire'
     OCCUPATION_CHOICES = [
-        (DROPSHIPPER, 'dropshipper'),
+        (DROPSHIPPEUR, 'dropshippeur'),
         (INFLUENCEUR, 'influenceur'),
         (AFFILIATION, 'affiliation'),
         (PRESTATAIRE, 'prestataire')
-    ] 
-    username = models.CharField(max_length=255, unique=True)
-    email = models.CharField(max_length=200, unique=True)
-    password = models.CharField(max_length=200)
+    ]
+    user = user = models.ForeignKey(User, verbose_name="Utilisateur associé", on_delete=models.CASCADE)
+    username = models.CharField(max_length=200, unique=True, null=True)
+    email = models.EmailField(max_length=254,unique=True, null=True)
     status = models.CharField(
         null=False,
         max_length=20,
@@ -23,10 +23,6 @@ class User(AbstractUser):
         default=PRESTATAIRE
     )
     
-    
-    
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
 
 # class Customer(models.Model):
 
